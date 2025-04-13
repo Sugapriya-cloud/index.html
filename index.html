@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Potato Disease Prediction</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 40px;
+      background: #f0f0f0;
+    }
+    input, button {
+      margin: 10px;
+    }
+    img {
+      max-width: 300px;
+      margin: 20px auto;
+      display: block;
+    }
+    .result {
+      font-size: 1.2em;
+      color: green;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Potato Leaf Disease Prediction</h1>
+  <input type="file" id="imageInput"><br>
+  <button onclick="predictDisease()">Predict</button>
+
+  <img id="preview" src="" alt="Image preview">
+  <div class="result" id="resultText"></div>
+
+  <script>
+    const preview = document.getElementById('preview');
+    const resultText = document.getElementById('resultText');
+
+    document.getElementById('imageInput').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+      }
+    });
+
+    function predictDisease() {
+      const fileInput = document.getElementById('imageInput');
+      if (fileInput.files.length === 0) {
+        alert("Please select an image.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+
+      fetch("https://48a0-35-188-227-19.ngrok-free.app/predict", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        resultText.innerText = "Prediction: " + data.prediction;
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        resultText.innerText = "Prediction failed!";
+      });
+    }
+  </script>
+
+</body>
+</html>
