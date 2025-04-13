@@ -4,35 +4,80 @@
   <meta charset="UTF-8">
   <title>Potato Disease Prediction</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial;
-      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e1f5fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff;
       padding: 40px;
-      background: #f0f0f0;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 450px;
     }
-    input, button {
-      margin: 10px;
+
+    h1 {
+      color: #00796b;
+      margin-bottom: 30px;
     }
-    img {
-      max-width: 300px;
-      margin: 20px auto;
+
+    input[type="file"] {
       display: block;
+      margin: 20px auto;
     }
-    .result {
-      font-size: 1.2em;
-      color: green;
+
+    button {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    img {
       margin-top: 20px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 1.3em;
+      color: #388e3c;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <h1>Potato Leaf Disease Prediction</h1>
-  <input type="file" id="imageInput"><br>
-  <button onclick="predictDisease()">Predict</button>
-
-  <img id="preview" src="" alt="Image preview">
-  <div class="result" id="resultText"></div>
+  <div class="container">
+    <h1>Potato Leaf Disease Prediction</h1>
+    <input type="file" id="imageInput">
+    <button onclick="predictDisease()">Predict</button>
+    <img id="preview" src="" alt="Image preview">
+    <div class="result" id="resultText"></div>
+  </div>
 
   <script>
     const preview = document.getElementById('preview');
@@ -72,3 +117,4 @@
 
 </body>
 </html>
+
